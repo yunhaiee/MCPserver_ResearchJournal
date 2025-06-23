@@ -4,11 +4,8 @@ A Model Context Protocol (MCP) server that provides tools for searching academic
 
 ## Features
 
-- **PubMed Search**: Search for articles by journal name and keywords in abstracts
+- **PubMed Search**: Search for articles from NIH's PubMed database
 - **Scopus Search**: Search for articles from Elsevier's Scopus database
-- **Rich Metadata**: Extract titles, authors, publication dates, DOIs, and abstracts
-- **Direct Links**: Generate clickable links to research papers and DOI references
-- **MCP Integration**: Seamlessly integrate with Claude and other AI assistants
 
 ## Prerequisites
 

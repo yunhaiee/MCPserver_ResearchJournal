@@ -1,4 +1,4 @@
-# PubMed Scraper MCP Server
+# Research Scraper MCP Server
 
 A Model Context Protocol (MCP) server that provides tools for searching academic research papers from PubMed and Scopus databases. This server can be connected to Claude and other AI assistants to enable research paper discovery and analysis.
 

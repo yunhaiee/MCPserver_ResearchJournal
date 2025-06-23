@@ -50,7 +50,8 @@ A Model Context Protocol (MCP) server that provides tools for searching academic
    1. This will lead you to a file called 'claude_desktop_config.json'
    2. Open this file with an editor.
    3. Copy paste following:
-      ```{
+      ```
+         {
            "mcpServers": {
              "research-scraper": {
                "command": "uv",

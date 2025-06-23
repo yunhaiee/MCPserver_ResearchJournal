@@ -19,8 +19,8 @@ A Model Context Protocol (MCP) server that provides tools for searching academic
 
 1. **Clone or download this repository**
    ```bash
-   git clone <repository-url>
-   cd pubmed-scraper
+   git clone <https://github.com/yunhaiee/MCPserver_ResearchJournal>
+   cd research-scraper
    ```
 
 2. **Install dependencies**
@@ -33,7 +33,7 @@ A Model Context Protocol (MCP) server that provides tools for searching academic
    For Scopus searches, you'll need an Elsevier API key:
    - Visit [Elsevier Developer Portal](https://dev.elsevier.com/)
    - Create an account and get your API key
-   - The current code uses a demo key, but for production use, replace `ELSEVIER_API_KEY` in `pubmed_scraper.py` with your own key
+   - The current code uses a demo key, but for production use, replace `ELSEVIER_API_KEY` in `research_scraper.py` with your key
 
 ## Usage
 
@@ -41,21 +41,34 @@ A Model Context Protocol (MCP) server that provides tools for searching academic
 
 1. **Start the server**
    ```bash
-   python pubmed_scraper.py
+   python research_scraper.py
    ```
 
 2. **Connect to Claude Desktop**
    
-   In Claude Desktop, go to Settings → Model Context Protocol and add a new server:
-   - **Name**: PubMed Scraper
-   - **Transport**: stdio
-   - **Command**: `python`
-   - **Arguments**: `path/to/pubmed_scraper.py`
+   In Claude Desktop, go to Settings → Developer → Edit Setting
+   1. This will lead you to a file called 'claude_desktop_config.json'
+   2. Open this file with an editor.
+   3. Copy paste following:
+      ```{
+           "mcpServers": {
+             "research-scraper": {
+               "command": "uv",
+               "args": [
+                 "--directory",
+                 "C:\\Users\\user\\research-scraper",
+                 "run",
+                 "research_scraper.py"
+               ]
+             }
+           }
+         }
+      ```
 
 ### Available Tools
 
-#### 1. `search_pubmed_articles`
-Search for recent articles from a specific journal containing keywords in their abstract.
+#### 1. `search_pubmed`
+Search for recent articles from a specific journal containing keywords in their abstract using PubMed API.
 
 **Parameters:**
 - `journal`: Name of the journal (e.g., "Accident Analysis and Prevention", "Journal of Safety Research")
@@ -63,7 +76,7 @@ Search for recent articles from a specific journal containing keywords in their 
 
 **Example:**
 ```
-Search for articles about elderly drivers in Accident Analysis and Prevention journal
+Search for recent 10 articles about elderly drivers in Accident Analysis and Prevention journal
 ```
 
 #### 2. `search_scopus`
@@ -72,15 +85,11 @@ Search recent articles from Scopus by journal and keyword.
 **Parameters:**
 - `journal`: Journal name (e.g., "Accident Analysis and Prevention", "Journal of Safety Research")
 - `keyword`: Search keyword (e.g., "elderly", "machine learning", "traffic accidents")
-- `max_results`: Maximum number of results (default: 10)
 
 **Example:**
 ```
-Search for machine learning articles in Journal of Transportation Safety and Security
+Search for machine learning articles in the Journal of Transportation Safety and Security
 ```
-
-#### 3. `test_pubmed_connection`
-Test the connection to PubMed with a simple search.
 
 ## Example Conversations with Claude
 
@@ -90,7 +99,7 @@ User: "Find recent research about elderly drivers in traffic safety journals"
 
 Claude can use:
 - search_pubmed_articles("Accident Analysis and Prevention", "elderly")
-- search_scopus("Journal of Safety Research", "elderly", 5)
+- search_scopus("Journal of Safety Research", "elderly")
 ```
 
 ### Example 2: Machine Learning in Transportation
@@ -98,7 +107,7 @@ Claude can use:
 User: "What are the latest machine learning applications in transportation safety?"
 
 Claude can use:
-- search_scopus("Journal of Transportation Safety and Security", "machine learning", 10)
+- search_scopus("Journal of Transportation Safety and Security", "machine learning")
 - search_pubmed_articles("Accident Analysis and Prevention", "machine learning")
 ```
 
@@ -129,46 +138,3 @@ The output is formatted with markdown links that work seamlessly with Notion:
 - DOI links are clickable and direct to the research paper
 - Scopus links provide access to detailed article information
 - All links are properly formatted for copy-paste into Notion
-
-## Troubleshooting
-
-### Common Issues
-
-1. **Import errors**: Make sure all dependencies are installed with `pip install -r requirements.txt`
-
-2. **API rate limiting**: The tools include retry logic, but if you encounter rate limits, wait a few minutes before trying again
-
-3. **No results found**: Try different keyword variations or check journal name spelling
-
-4. **Connection issues**: Ensure you have internet access and the APIs are accessible
-
-### Debug Mode
-
-To see detailed request information, the code includes print statements that show:
-- Request attempts and responses
-- Content length and status codes
-- Parsing results
-
-## API Limits and Best Practices
-
-- **PubMed**: No API key required, but respect rate limits
-- **Scopus**: Requires API key, has usage limits based on your plan
-- **Recommendations**:
-  - Use specific keywords for better results
-  - Limit `max_results` to reasonable numbers (5-20)
-  - Cache results when possible for repeated searches
-
-## Contributing
-
-Feel free to submit issues, feature requests, or pull requests to improve this tool.
-
-## License
-
-This project is open source. Please check the license file for details.
-
-## Support
-
-For issues or questions:
-1. Check the troubleshooting section above
-2. Review the code comments for implementation details
-3. Test with the `test_pubmed_connection` tool first

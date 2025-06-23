@@ -36,12 +36,7 @@ A Model Context Protocol (MCP) server that provides tools for searching academic
 
 ### Running the MCP Server
 
-1. **Start the server**
-   ```bash
-   python research_scraper.py
-   ```
-
-2. **Connect to Claude Desktop**
+   **Connect to Claude Desktop**
    
    In Claude Desktop, go to Settings → Developer → Edit Setting
    1. This will lead you to a file called 'claude_desktop_config.json'
@@ -72,11 +67,6 @@ Search for recent articles from a specific journal containing keywords in their 
 - `journal`: Name of the journal (e.g., "Accident Analysis and Prevention", "Journal of Safety Research")
 - `keyword`: Keyword to filter abstract text (e.g., "elderly", "machine learning", "traffic accidents")
 
-**Example:**
-```
-Search for recent 10 articles about elderly drivers in Accident Analysis and Prevention journal
-```
-
 #### 2. `search_scopus`
 Search recent articles from Scopus by journal and keyword.
 
@@ -84,29 +74,16 @@ Search recent articles from Scopus by journal and keyword.
 - `journal`: Journal name (e.g., "Accident Analysis and Prevention", "Journal of Safety Research")
 - `keyword`: Search keyword (e.g., "elderly", "machine learning", "traffic accidents")
 
-**Example:**
-```
-Search for machine learning articles in the Journal of Transportation Safety and Security
-```
-
 ## Example Conversations with Claude
 
 ### Example 1: Research on Elderly Drivers
 ```
 User: "Find recent research about elderly drivers in traffic safety journals"
-
-Claude can use:
-- search_pubmed_articles("Accident Analysis and Prevention", "elderly")
-- search_scopus("Journal of Safety Research", "elderly")
 ```
 
 ### Example 2: Machine Learning in Transportation
 ```
 User: "What are the latest machine learning applications in transportation safety?"
-
-Claude can use:
-- search_scopus("Journal of Transportation Safety and Security", "machine learning")
-- search_pubmed_articles("Accident Analysis and Prevention", "machine learning")
 ```
 
 ## Output Format

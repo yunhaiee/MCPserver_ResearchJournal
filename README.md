@@ -78,12 +78,12 @@ Search recent articles from Scopus by journal and keyword.
 
 ### Example 1: Research on Elderly Drivers
 ```
-User: "Find recent research about elderly drivers in traffic safety journals"
+User: "From the journal called Accident Analysis and Prevention, find 10 recent articles with the keyword elderly. Organize and summarize in my Notion note 'Research Journals 3' using a toggle list. Use search_scopus."
 ```
 
 ### Example 2: Machine Learning in Transportation
 ```
-User: "What are the latest machine learning applications in transportation safety?"
+User: "From a journal called Astrophysical Journal, find 10 recent articles with the keyword exoplanet. Organize their summaries into my Notion note called test 2. List them with toggle list."
 ```
 
 ## Output Format
